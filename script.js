@@ -5,7 +5,7 @@ let imagebtn=document.querySelector("#image")
 let image=document.querySelector("#image img")
 let imageinput=document.querySelector("#image input")
 
-const Api_Url="https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBENC-DS6fI9R9UNDb4gFEztPSWbn5w0nE"
+
 
 let user={
     message:null,
@@ -14,39 +14,75 @@ let user={
         data:null
     }
 }
+let chatHistory = [
+    {
+        role: "user",
+        parts: [{ text: "You are ANIBOT created by Aniket. Reply in Hinglish." }]
+    }
+];
  
 async function generateResponse(aiChatBox) {
-    let text=aiChatBox.querySelector(".ai-chat-area")
-    let RequestOption={
-        method:"POST",
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({
-            contents:[
-                {
-                    parts:[
-                        {text:user.message},
-                        ...(user.file.data?[{inline_data:user.file}]:[])
-                    ]
-                }
-            ]
-        })
+    let text = aiChatBox.querySelector(".ai-chat-area");
+    function typeEffect(element, text) {
+    let i = 0;
+    element.innerHTML = "";
+    let interval = setInterval(() => {
+        if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+        } else {
+            clearInterval(interval);
+        }
+    }, 20);
+}
+
+    const Api_Url =
+"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyCQaDerGPosLXg4wrRZgWO9oYCRMZRObHA";
+
+
+    try {
+        let response = await fetch(Api_Url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+    contents: chatHistory
+})
+        });
+
+        if (!response.ok) {
+            text.innerHTML = "HTTP Error: " + response.status;
+            console.log(await response.text());
+            return;
+        }
+
+        let data = await response.json();
+
+        if (!data.candidates) {
+            text.innerHTML = "API Error";
+            console.log(data);
+            return;
+        }
+
+        let reply =
+            data.candidates[0].content.parts[0].text;
+            chatHistory.push({
+    role: "model",
+    parts: [{ text: reply }]
+});
+
+        typeEffect(text, reply);
+
+    } catch (error) {
+        console.log(error);
+        text.innerHTML = "Error";
     }
-    try{
-        let response=await fetch(Api_Url,RequestOption)
-        let data=await response.json()
-        let apiResponse=data.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*\*/g,"$1").trim()
-        text.innerHTML=apiResponse    
-    }
-    catch(error){
-        console.log(error)
-        text.innerHTML="Error"
-    }
-    finally{
-        chatContainer.scrollTo({top:chatContainer.scrollHeight,behavior:"smooth"})
-        image.src=`img.svg`
-        image.classList.remove("choose")
-        user.file={}
-    }
+
+    chatContainer.scrollTo({
+        top: chatContainer.scrollHeight,
+        behavior: "smooth"
+    });
 }
 
 function createChatBox(html,classes){
@@ -58,6 +94,10 @@ function createChatBox(html,classes){
 
 function handlechatResponse(userMessage){
     user.message=userMessage
+    chatHistory.push({
+    role: "user",
+    parts: [{ text: userMessage }]
+});
     let html=`<img src="user.png" alt="" id="userImage" width="8%">
 <div class="user-chat-area">
 ${user.message}
