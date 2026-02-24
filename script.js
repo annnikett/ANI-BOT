@@ -52,7 +52,9 @@ async function generateResponse(aiChatBox) {
         });
 
         if (!response.ok) {
-            text.innerHTML = "HTTP Error: " + response.status;
+            if (response.status === 429) {
+  text.innerHTML = "Too many requests. Thoda wait karo 🙏";
+}
             console.log(await response.text());
             return;
         }
