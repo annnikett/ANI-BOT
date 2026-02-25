@@ -7,22 +7,35 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="chat-container">
-<div class="ai-chat-box">
-    <img src="me.jpg.png" alt="" id="aiImage" width="10%">
-    <div class="ai-chat-area">
-   Hello ! How Can I Help you Today?
-    </div>
-   
+
+<div class="header">
+  <h2>🤖 ANIBOT</h2>
+  <button id="themeToggle">🌙</button>
 </div>
+
+<div class="chat-container">
+  <div class="ai-chat-box">
+    <img src="ai.png" alt="" id="aiImage">
+    <div class="ai-chat-area">
+      Hello ! How Can I Help you Today?
     </div>
-    <div class="prompt-area">
-<input type="text" id="prompt" placeholder="Message...">
-<button id="image"><img src="img.svg" alt="">
-<input type="file" accept="images/*" hidden></button>
-<button id="submit"><img src="submit.svg" alt=""></button>
-    </div>
-  <script src="script.js"></script>  
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  </div>
+</div>
+
+<div class="prompt-area">
+  <input type="text" id="prompt" placeholder="Message ANIBOT...">
+  
+  <button id="image">
+    <img src="img.svg" alt="">
+    <input type="file" accept="images/*" hidden>
+  </button>
+
+  <button id="submit">
+    <img src="submit.svg" alt="">
+  </button>
+</div>
+
+<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </body>
 </html>

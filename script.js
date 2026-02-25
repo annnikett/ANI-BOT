@@ -149,3 +149,15 @@ imageinput.addEventListener("change",()=>{
 imagebtn.addEventListener("click",()=>{
     imagebtn.querySelector("input").click()
 })
+
+const toggleBtn = document.getElementById("themeToggle");
+
+toggleBtn.addEventListener("click", () => {
+  document.documentElement.classList.toggle("dark");
+
+  if (document.documentElement.classList.contains("dark")) {
+    toggleBtn.textContent = "☀️";
+  } else {
+    toggleBtn.textContent = "🌙";
+  }
+});
