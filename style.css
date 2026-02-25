@@ -32,6 +32,9 @@ body{
   font-size:18px;
   cursor:pointer;
 }
+.header h2 {
+  color: black;   /* Light mode me black */
+}
 
 /* CHAT AREA */
 .chat-container{
@@ -141,4 +144,7 @@ body{
   background:#111827;
   color:white;
   border:1px solid #374151;
+}
+.dark .header h2 {
+  color: white;   /* Dark mode me white */
 }
