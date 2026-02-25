@@ -37,7 +37,7 @@ async function generateResponse(aiChatBox) {
 }
 
     const Api_Url =
-"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyBb8943v_2Jjdu5rEpquv3ZOnwQ9GEjzgI";
+"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyBCGy6zEv7Gmoo2ppbFupIbua3kEazK4y0";
 
 
     try {
