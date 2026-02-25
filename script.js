@@ -110,7 +110,7 @@ ${user.file.data?`<img src="data:${user.file.mime_type};base64,${user.file.data}
     chatContainer.appendChild(userChatBox)
     chatContainer.scrollTo({top:chatContainer.scrollHeight,behavior:"smooth"})
     setTimeout(()=>{
-        let html=`<img src="me.jpg.png" alt="" id="aiImage" width="10%">
+        let html=`<img src="ai.png" alt="" id="aiImage" width="10%">
         <div class="ai-chat-area">
         <img src="loading.webp" alt="" class="load" width="50px">
         </div>`
