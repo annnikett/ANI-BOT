@@ -40,7 +40,7 @@ async function generateResponse(aiChatBox) {
 
     try {
 
-        let response = await fetch("http://localhost:3000/chat", {
+        let response = await fetch("https://ani-bot-8s0l.onrender.com/chat", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
