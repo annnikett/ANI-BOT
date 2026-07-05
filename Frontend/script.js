@@ -94,7 +94,7 @@ function handlechatResponse(userMessage) {
 });
 
     let html = `
-<img src="user.png" id="userImage" width="8%">
+<img src="me.jpg.png" id="userImage" width="8%">
 <div class="user-chat-area">
 ${user.message}
 ${user.file.data ? `<img src="data:${user.file.mime_type};base64,${user.file.data}" class="chooseimg"/>` : ""}
